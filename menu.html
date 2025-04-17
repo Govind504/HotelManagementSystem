@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Menu | Hotel Miranda</title>
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <section class="menu" id="menu">
+        <div class="section__container menu__container">
+          <div class="menu__header">
+            <div>
+              <p class="section__subheader">MENU</p>
+              <h2 class="section__header">Our Food Menu</h2>
+            </div>
+            <div class="section__nav">
+              <span><i class="ri-arrow-left-line"></i></span>
+              <span><i class="ri-arrow-right-line"></i></span>
+            </div>
+          </div>
+          <ul class="menu__items">
+            <li>
+              <img src="assets/menu-1.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Fggs & Bacon</h4>
+                <p>
+                  It is a culinary innovation that puts a unique spin on the
+                  beloved breakfast combination.
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="assets/menu-2.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Tea or Coffee</h4>
+                <p>
+                  A classic choice for your daily dose of comfort and calmness.
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="assets/menu-3.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Chia Oatmeal</h4>
+                <p>
+                  Our Chia Oatmeal is a wholesome nutrient-packed breakfast
+                  delight.
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="assets/menu-4.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Fruit Parfait</h4>
+                <p>
+                  Our Fruit Parfait is a delightful culinary masterpiece of
+                  freshness and flavor.
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="assets/menu-5.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Marmalade Selection</h4>
+                <p>
+                  Our Marmalade Selection is a delectable medley of vibrant,
+                  handcrafted citrus preserves.
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="assets/menu-6.jpg" alt="menu" />
+              <div class="menu__details">
+                <h4>Cheese Plate</h4>
+                <p>
+                  Our cheese plate is a masterpiece that celebrates rich and
+                  diverse world of cheeses.
+                </p>
+              </div>
+            </li>
+          </ul>
+          <div class="menu__images">
+            <img src="assets/menu-7.jpg" alt="menu" />
+            <img src="assets/menu-8.jpg" alt="menu" />
+            <img src="assets/menu-9.jpg" alt="menu" />
+          </div>
+        </div>
+      </section>
+      <footer class="footer">
+        <div class="section__container footer__container">
+          <div class="footer__col">
+            <div class="logo footer__logo">
+              <div>H</div>
+              <span>HOTEL<br />MIRANDA</span>
+            </div>
+            <p class="section__description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil,
+              laudantium unde. Doloremque eaque debitis laborum labore voluptates
+              iste molestiae consectetur.
+            </p>
+            <ul class="footer__socials">
+              <li>
+                <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
+                  <i class="ri-youtube-fill"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                  <i class="ri-instagram-line"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                  <i class="ri-facebook-fill"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+                  <i class="ri-linkedin-fill"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4>Services</h4>
+            <div class="footer__links">
+              <li><a href="#">Online Booking</a></li>
+              <li><a href="#">Room Customization</a></li>
+              <li><a href="#">Virtual Tours</a></li>
+              <li><a href="#">Special Offers</a></li>
+              <li><a href="#">Concierge Services</a></li>
+              <li><a href="#">Customer Support</a></li>
+            </div>
+          </div>
+          <div class="footer__col">
+            <h4>Contact Us</h4>
+            <div class="footer__links">
+              <li>
+                <span><i class="ri-phone-fill"></i></span>
+                <div>
+                  <h5>Phone Number</h5>
+                  <p>+91 9876543210</p>
+                </div>
+              </li>
+              <li>
+                <span><i class="ri-record-mail-line"></i></span>
+                <div>
+                  <h5>Email</h5>
+                  <p>info@hotelmiranda.com</p>
+                </div>
+              </li>
+              <li>
+                <span><i class="ri-map-pin-2-fill"></i></span>
+                <div>
+                  <h5>Location</h5>
+                  <p>First St. NYC</p>
+                </div>
+              </li>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bar">
+          Copyright © 2023 Web Design Mastery. All rights reserved.
+        </div>
+      </footer>
+    <script>
+      // Dynamically load the navbar
+      fetch('navbar.html')
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to load navbar');
+          }
+          return response.text();
+        })
+        .then((html) => {
+          document.getElementById('navbar').innerHTML = html;
+
+          // Initialize initials button after navbar is loaded
+          const userInitialsBtn = document.getElementById('user-initials');
+          const dropdownMenu = document.getElementById('dropdown-menu');
+          const logoutBtn = document.getElementById('logout-btn');
+
+          if (userInitialsBtn) {
+            const initials = localStorage.getItem('userInitials') || 'AB';
+            userInitialsBtn.style.display = 'flex';
+            userInitialsBtn.textContent = initials;
+
+            userInitialsBtn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              dropdownMenu.classList.toggle('show');
+            });
+
+            document.addEventListener('click', (e) => {
+              if (!dropdownMenu.contains(e.target) && !userInitialsBtn.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+              }
+            });
+
+            logoutBtn.addEventListener('click', () => {
+              localStorage.removeItem('userInitials');
+              window.location.href = 'login.html';
+            });
+          }
+        })
+        .catch((error) => console.error('Error loading navbar:', error));
+    </script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
+``` 

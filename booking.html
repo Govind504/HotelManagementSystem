@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Booking | Hotel Miranda</title>
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <header class="header">
+      <div class="section__container header__container">
+        <p class="section__subheader">BOOK YOUR STAY</p>
+        <h1>Make A Reservation</h1>
+        <p class="section__description">
+          Plan your perfect stay with us. Fill in the details below to book your room.
+        </p>
+      </div>
+    </header>
+
+    <section class="form-page">
+      <div class="form-container">
+        <h2 class="form-header">Booking Details</h2>
+        <form id="booking-form">
+          <div class="input__group">
+            <label for="arrival-date">Arrival Date</label>
+            <input type="date" id="arrival-date" required />
+          </div>
+          <div class="input__group">
+            <label for="departure-date">Departure Date</label>
+            <input type="date" id="departure-date" required />
+          </div>
+          <div class="input__group">
+            <label for="guests">Number of Guests</label>
+            <input type="number" id="guests" placeholder="Enter number of guests" required />
+          </div>
+          <div class="input__group">
+            <label for="room-type">Room Type</label>
+            <select id="room-type" required>
+              <option value="" disabled selected>Select a room type</option>
+              <option value="deluxe-suite">Deluxe Suite</option>
+              <option value="family-suite">Family Suite</option>
+              <option value="luxury-penthouse">Luxury Penthouse</option>
+            </select>
+          </div>
+          <button type="submit" class="btn">Confirm Booking</button>
+        </form>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="section__container footer__container">
+        <!-- ...existing footer content from index.html... -->
+      </div>
+      <div class="footer__bar">
+        Copyright © 2023 Hotel Miranda. All rights reserved.
+      </div>
+    </footer>
+
+    <script>
+      // Dynamically load the navbar
+      fetch('navbar.html')
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to load navbar');
+          }
+          return response.text();
+        })
+        .then((html) => {
+          document.getElementById('navbar').innerHTML = html;
+
+          // Initialize initials button after navbar is loaded
+          const userInitialsBtn = document.getElementById('user-initials');
+          const dropdownMenu = document.getElementById('dropdown-menu');
+          const logoutBtn = document.getElementById('logout-btn');
+
+          if (userInitialsBtn) {
+            const initials = localStorage.getItem('userInitials') || 'AB';
+            userInitialsBtn.style.display = 'flex';
+            userInitialsBtn.textContent = initials;
+
+            userInitialsBtn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              dropdownMenu.classList.toggle('show');
+            });
+
+            document.addEventListener('click', (e) => {
+              if (!dropdownMenu.contains(e.target) && !userInitialsBtn.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+              }
+            });
+
+            logoutBtn.addEventListener('click', () => {
+              localStorage.removeItem('userInitials');
+              localStorage.removeItem('isLoggedIn'); // Clear session data
+              alert('You have been logged out.');
+              window.location.href = 'login.html'; // Redirect to login page
+            });
+          }
+        })
+        .catch((error) => console.error('Error loading navbar:', error));
+
+      // Handle booking form submission
+      document.getElementById('booking-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const arrivalDate = document.getElementById('arrival-date').value;
+        const departureDate = document.getElementById('departure-date').value;
+        const guests = document.getElementById('guests').value;
+        const roomType = document.getElementById('room-type').value;
+
+        if (arrivalDate && departureDate && guests && roomType) {
+          alert(`Booking confirmed!\nArrival: ${arrivalDate}\nDeparture: ${departureDate}\nGuests: ${guests}\nRoom: ${roomType}`);
+          window.location.href = 'dashboard.html'; // Redirect to dashboard after booking
+        } else {
+          alert('Please fill in all the fields.');
+        }
+      });
+    </script>
+  </body>
+</html>

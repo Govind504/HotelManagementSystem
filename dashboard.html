@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Dashboard | Hotel Miranda</title>
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <header class="header">
+      <div class="section__container header__container">
+        <p class="section__subheader">WELCOME BACK</p>
+        <h1>Your Dashboard</h1>
+        <p class="section__description">
+          Manage your profile, bookings, and account settings in one place.
+        </p>
+      </div>
+    </header>
+
+    <section class="dashboard__grid">
+      <div class="dashboard__card" id="profile">
+        <span><i class="ri-user-line"></i></span>
+        <h3>Profile</h3>
+        <p>View and update your personal information.</p>
+        <button class="btn">Edit Profile</button>
+      </div>
+      <div class="dashboard__card" id="bookings">
+        <span><i class="ri-calendar-check-line"></i></span>
+        <h3>Bookings</h3>
+        <p>View your current and past bookings.</p>
+        <button class="btn">View Bookings</button>
+      </div>
+      <div class="dashboard__card" id="settings">
+        <span><i class="ri-settings-3-line"></i></span>
+        <h3>Settings</h3>
+        <p>Update your account settings and preferences.</p>
+        <button class="btn">Update Settings</button>
+      </div>
+    </section>
+
+    <!-- Login and Signup Modals -->
+    <div id="login-modal" class="modal" style="display: none;">
+      <div class="form-container">
+        <h2 class="form-header">Login</h2>
+        <form id="login-form">
+          <div class="input__group">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" placeholder="Enter your email" required />
+          </div>
+          <div class="input__group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" placeholder="Enter your password" required />
+          </div>
+          <button type="submit" class="btn">Login</button>
+        </form>
+        <p class="form-footer">
+          Don't have an account? <a href="#" id="open-signup">Sign up</a>
+        </p>
+      </div>
+    </div>
+
+    <div id="signup-modal" class="modal" style="display: none;">
+      <div class="form-container">
+        <h2 class="form-header">Sign Up</h2>
+        <form id="signup-form">
+          <div class="input__group">
+            <label for="signup-name">Name</label>
+            <input type="text" id="signup-name" placeholder="Enter your name" required />
+          </div>
+          <div class="input__group">
+            <label for="signup-email">Email</label>
+            <input type="email" id="signup-email" placeholder="Enter your email" required />
+          </div>
+          <div class="input__group">
+            <label for="signup-password">Password</label>
+            <input type="password" id="signup-password" placeholder="Enter your password" required />
+          </div>
+          <button type="submit" class="btn">Sign Up</button>
+        </form>
+        <p class="form-footer">
+          Already have an account? <a href="#" id="open-login">Login</a>
+        </p>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="section__container footer__container">
+        <div class="footer__col">
+          <div class="logo footer__logo">
+            <div>H</div>
+            <span>HOTEL<br />MIRANDA</span>
+          </div>
+          <p class="section__description">
+            Experience luxury and comfort at Hotel Miranda.
+          </p>
+          <ul class="footer__socials">
+            <li>
+              <a href="#"><i class="ri-youtube-fill"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="ri-instagram-line"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="ri-facebook-fill"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="ri-linkedin-fill"></i></a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Quick Links</h4>
+          <div class="footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#bookings">Bookings</a></li>
+            <li><a href="#settings">Settings</a></li>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h4>Contact Us</h4>
+          <div class="footer__links">
+            <li>
+              <span><i class="ri-phone-fill"></i></span>
+              <div>
+                <h5>Phone Number</h5>
+                <p>+91 9876543210</p>
+              </div>
+            </li>
+            <li>
+              <span><i class="ri-record-mail-line"></i></span>
+              <div>
+                <h5>Email</h5>
+                <p>info@hotelmiranda.com</p>
+              </div>
+            </li>
+            <li>
+              <span><i class="ri-map-pin-2-fill"></i></span>
+              <div>
+                <h5>Location</h5>
+                <p>First St. NYC</p>
+              </div>
+            </li>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bar">
+        Copyright © 2023 Hotel Miranda. All rights reserved.
+      </div>
+    </footer>
+
+    <script>
+      // Dynamically load the navbar
+      fetch('navbar.html')
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to load navbar');
+          }
+          return response.text();
+        })
+        .then((html) => {
+          document.getElementById('navbar').innerHTML = html;
+
+          // Initialize initials button after navbar is loaded
+          const userInitialsBtn = document.getElementById('user-initials');
+          const dropdownMenu = document.getElementById('dropdown-menu');
+          const logoutBtn = document.getElementById('logout-btn');
+
+          if (userInitialsBtn) {
+            const initials = localStorage.getItem('userInitials') || 'AB';
+            userInitialsBtn.style.display = 'flex';
+            userInitialsBtn.textContent = initials;
+
+            userInitialsBtn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              dropdownMenu.classList.toggle('show');
+            });
+
+            document.addEventListener('click', (e) => {
+              if (!dropdownMenu.contains(e.target) && !userInitialsBtn.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+              }
+            });
+
+            logoutBtn.addEventListener('click', () => {
+              localStorage.removeItem('userInitials');
+              localStorage.removeItem('isLoggedIn'); // Clear session data
+              alert('You have been logged out.');
+              window.location.href = 'index.html'; // Redirect to the home page
+            });
+          }
+        })
+        .catch((error) => console.error('Error loading navbar:', error));
+
+      // Login and Signup Modal Logic
+      document.addEventListener('DOMContentLoaded', () => {
+        const loginModal = document.getElementById('login-modal');
+        const signupModal = document.getElementById('signup-modal');
+        const openSignup = document.getElementById('open-signup');
+        const openLogin = document.getElementById('open-login');
+
+        loginModal.style.display = 'none';
+        signupModal.style.display = 'none';
+
+        openSignup.addEventListener('click', (e) => {
+          e.preventDefault();
+          loginModal.style.display = 'none';
+          signupModal.style.display = 'block';
+        });
+
+        openLogin.addEventListener('click', (e) => {
+          e.preventDefault();
+          signupModal.style.display = 'none';
+          loginModal.style.display = 'block';
+        });
+
+        // Login form submission
+        const loginForm = document.getElementById('login-form');
+        if (loginForm) {
+          loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const emailInput = document.getElementById('login-email');
+            const passwordInput = document.getElementById('login-password');
+
+            if (!emailInput || !passwordInput) {
+              console.error('Login form inputs are missing.');
+              alert('An error occurred. Please try again later.');
+              return;
+            }
+
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            try {
+              const response = await fetch('users.json');
+              if (!response.ok) {
+                throw new Error('Failed to load users');
+              }
+              const users = await response.json();
+              const user = users.find((u) => u.email === email);
+
+              if (user) {
+                if (user.password === password) {
+                  localStorage.setItem('userInitials', user.initials || `${user.firstName[0]}${user.lastName[0]}`);
+                  localStorage.setItem('isLoggedIn', 'true'); // Set session data
+                  alert('Login successful!');
+                  window.location.href = 'dashboard.html';
+                } else {
+                  alert('Invalid password.');
+                }
+              } else {
+                alert('User does not exist. Redirecting to signup page...');
+                window.location.href = 'signup.html'; // Redirect to signup page
+              }
+            } catch (error) {
+              console.error('Error during login:', error);
+              alert('An error occurred. Please try again later.');
+            }
+          });
+        } else {
+          console.error('Login form not found in the DOM.');
+        }
+
+        // Check if the user is logged in
+        if (localStorage.getItem('isLoggedIn') === 'true') {
+          const initials = localStorage.getItem('userInitials') || 'AB';
+          alert(`Welcome back, ${initials}!`);
+        }
+      });
+    </script>
+  </body>
+</html>
+``` 
